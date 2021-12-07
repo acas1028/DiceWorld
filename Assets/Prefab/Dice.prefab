@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 3566062709063409518}
   m_Layer: 0
   m_Name: Dice
-  m_TagString: Untagged
+  m_TagString: Dice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,7 +290,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2847509352493635512}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -310,6 +310,7 @@ MonoBehaviour:
   SuccessEffect: {fileID: 1500378020736912, guid: 2547a66872ebe45408ace228820a79e1, type: 3}
   FailEffect: {fileID: 1150934714579380, guid: 779aa8c25fbd0e1488637639c9fff976, type: 3}
   speed: 300
+  isActivated: 0
   currentDicePosition: 0
 --- !u!114 &3566062709063409518
 MonoBehaviour:

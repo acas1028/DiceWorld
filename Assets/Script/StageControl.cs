@@ -50,7 +50,7 @@ public class StageControl : MonoBehaviour
 
     IEnumerator CActiveUI()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 
         ClearUI.SetActive(true);
     }

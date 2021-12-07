@@ -58,7 +58,10 @@
   <ItemGroup>
     <Compile Include="Assets\Script\MapEditor\TileColor.cs" />
     <Compile Include="Assets\Script\MapEditor\CurrentMapName.cs" />
+    <Compile Include="Assets\Script\MovingDice\MoveDoubleDice.cs" />
     <Compile Include="Assets\Script\MovingDice\DiceQuad.cs" />
+    <Compile Include="Assets\Script\DoubleDice\DoubleDiceGenerator.cs" />
+    <Compile Include="Assets\Script\DoubleDice\DoubleDiceColorChanger.cs" />
     <Compile Include="Assets\Script\StageMapGenerate.cs" />
     <Compile Include="Assets\Script\MapEditor\TileColorChange.cs" />
     <Compile Include="Assets\Script\MovingDice\QuadManager.cs" />
@@ -71,13 +74,20 @@
     <Compile Include="Assets\Script\MapEditor\TileManager.cs" />
     <Compile Include="Assets\Script\MapEditor\ChangeLoadMapName.cs" />
     <Compile Include="Assets\Script\MapEditor\MapGenerator.cs" />
+    <Compile Include="Assets\Script\DoubleDice\DoubleDiceChanger.cs" />
     <Compile Include="Assets\Script\DiceGenerator.cs" />
     <Compile Include="Assets\Script\MapEditor\CreateNewMap.cs" />
-    <Compile Include="Assets\Script\DoubleDice\DoubleDiceGenerator.cs" />
-    <Compile Include="Assets\Script\DoubleDice\DoubleDiceColorChanger.cs" />
-    <Compile Include="Assets\Script\DoubleDice\DoubleDiceChanger.cs" />
+    <Compile Include="Assets\Script\CameraFollow.cs" />
+    <Compile Include="Assets\Script\OtherCameraFollow.cs" />
+    <Compile Include="Assets\ToyBox\Scripts\MovingPlatform.cs" />
+    <Compile Include="Assets\ToyBox\Scripts\Rotate.cs" />
+    <Compile Include="Assets\ToyBox\Scripts\FlipPad.cs" />
+    <Compile Include="Assets\ToyBox\Scripts\AniActivate.cs" />
+    <Compile Include="Assets\UI pack\Scripts\FillValueNumber.cs" />
+    <Compile Include="Assets\Script\HelpUIControl.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\UI pack\Documentation.txt" />
      <None Include="Assets\Plugin\LitJson.dll" />
      <None Include="Assets\VoxelAnimals\Documentation\ReadMe.txt" />
     <Reference Include="UnityEngine">

@@ -15,9 +15,9 @@ public class DoubleDiceColorChanger : MonoBehaviour
     void Update()
     {
         if (DiceGenerator.GetComponent<DoubleDiceGenerator>().Dice_Start == null) return;
-        DiceGenerator.GetComponent<DoubleDiceGenerator>().Dice_Start.GetComponent<DiceQuad>().ChangeDiceColor(DiceGenerator.GetComponent<DoubleDiceGenerator>().Diceinfo);
+        DiceGenerator.GetComponent<DoubleDiceGenerator>().Dice_Start.GetComponent<DiceQuad>().ChangeDiceColor(DiceGenerator.GetComponent<DoubleDiceGenerator>().Diceinfo_Start);
 
         if (DiceGenerator.GetComponent<DoubleDiceGenerator>().Dice_End == null) return;
-        DiceGenerator.GetComponent<DoubleDiceGenerator>().Dice_End.GetComponent<DiceQuad>().ChangeDiceColor(DiceGenerator.GetComponent<DoubleDiceGenerator>().Diceinfo);
+        DiceGenerator.GetComponent<DoubleDiceGenerator>().Dice_End.GetComponent<DiceQuad>().ChangeDiceColor(DiceGenerator.GetComponent<DoubleDiceGenerator>().Diceinfo_End);
     }
 }

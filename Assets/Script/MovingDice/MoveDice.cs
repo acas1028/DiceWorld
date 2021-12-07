@@ -21,7 +21,6 @@ public class MoveDice : MonoBehaviour
     {
         tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
         diceGenerator = GameObject.Find("DiceGenerator").GetComponent<DiceGenerator>();
-        currentDicePosition = tileManager.Start_Point; // 차후 변경 있을 수 있음.
     }
     void Update()
     {
@@ -95,7 +94,6 @@ public class MoveDice : MonoBehaviour
             effect.transform.position = transform.position;
             Destroy(effect, 1.0f);
             diceGenerator.CResetDice();
-            Destroy(gameObject);
           
         }
         
