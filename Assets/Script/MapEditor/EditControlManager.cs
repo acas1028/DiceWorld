@@ -32,6 +32,7 @@ public class EditControlManager : MonoBehaviour
 
         SetCursorPosition();
         SetColor();
+
     }
 
     void SetCursorPosition()
@@ -70,33 +71,59 @@ public class EditControlManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Q))
         {
+            selectedTile.GetComponent<TileStatus>().isTileFree = false;
             selectedTile.GetComponent<TileColorChange>().ColorChange(TileColor.red);
+
+            tileManager.ResetFreeTile();
         }
         if(Input.GetKeyDown(KeyCode.W))
         {
+            selectedTile.GetComponent<TileStatus>().isTileFree = false;
             selectedTile.GetComponent<TileColorChange>().ColorChange(TileColor.green);
+
+            tileManager.ResetFreeTile();
         }
         if(Input.GetKeyDown(KeyCode.E))
         {
+            selectedTile.GetComponent<TileStatus>().isTileFree = false;
             selectedTile.GetComponent<TileColorChange>().ColorChange(TileColor.blue);
+
+            tileManager.ResetFreeTile();
         }
         if(Input.GetKeyDown(KeyCode.T))
         {
+            selectedTile.GetComponent<TileStatus>().isTileFree = false;
             selectedTile.GetComponent<TileColorChange>().ColorChange(TileColor.white);
+
+            tileManager.ResetFreeTile();
         }
         if(Input.GetKeyDown(KeyCode.R))
         {
+            selectedTile.GetComponent<TileStatus>().isTileFree = false;
             selectedTile.GetComponent<TileColorChange>().ColorChange(TileColor.black);
+
+            tileManager.ResetFreeTile();
         }
         if(Input.GetKeyDown(KeyCode.S))
         {
             tileManager.Start_Point = selectedNumber;
             // 스타트
+
+            tileManager.ResetFreeTile();
         }
         if(Input.GetKeyDown(KeyCode.D))
         {
             tileManager.End_Point = selectedNumber;
             // 엔드
+            selectedTile.GetComponent<TileStatus>().SettingFlag();
+            tileManager.ResetFreeTile();
+            tileManager.ResetEndTile();
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            selectedTile.GetComponent<TileStatus>().isTileFree = !selectedTile.GetComponent<TileStatus>().isTileFree;
+
+            tileManager.ResetFreeTile();
         }
     }
 

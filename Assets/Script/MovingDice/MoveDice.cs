@@ -109,7 +109,8 @@ public class MoveDice : MonoBehaviour
         {
             StageControl.Instance.ActiveUI();
         }
-        if(currentDicePosition == tileManager.End_Point || currentDicePosition == tileManager.Start_Point)
+
+        if(tileManager.CheckFreeTile(currentDicePosition)) //프리 타일이면 그냥 통과 가능
         {
             return true;
         }

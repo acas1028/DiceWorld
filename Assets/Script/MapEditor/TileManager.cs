@@ -11,6 +11,7 @@ public class ColorTileMap
     public List<int> Tile_type;
     public int Start_Point;
     public int End_Point;
+    public List<int> Free_TilePoint;
 
     public ColorTileMap()
     {
@@ -20,6 +21,7 @@ public class ColorTileMap
         Tile_type = new List<int>();
         Start_Point = 0;
         End_Point = 0;
+        Free_TilePoint = new List<int>();
     }
     public void SettingMapInfo(int stageType,int mapScale_X,int mapScale_Y)
     {
@@ -39,6 +41,16 @@ public class ColorTileMap
         End_Point = End;
     }
 
+    public void SettingFreeTile(int freeTile)
+    {
+        Free_TilePoint.Add(freeTile);
+    }
+
+    public void ClearFreeTileList()
+    {
+        Free_TilePoint.Clear();
+    }
+
     public void ClearList()
     {
         Tile_type.Clear();
@@ -53,17 +65,8 @@ public class TileManager : MonoBehaviour
     public string MapName;
     public int Start_Point;
     public int End_Point;
+    public List<int> FreeTilePoint;
 
-    Color Start_Color;
-    Color End_Color;
-
-    float StartColor_R;
-    float StartColor_G;
-    float StartColor_B;
-
-    float EndColor_R;
-    float EndColor_G;
-    float EndColor_B;
 
     [SerializeField]
     int MapScale_x;
@@ -72,42 +75,17 @@ public class TileManager : MonoBehaviour
     void Start()
     {
         Map = new ColorTileMap();
-        Start_Color = new Color(1.0f, 0.5f, 0.0f);
-        End_Color = new Color(0.0f, 0.5f, 1.0f);
-
-        StartColor_R = 1.0f;
-        StartColor_G = 0.5f;
-        StartColor_B = 0.0f;
-
-        EndColor_R = 0.0f;
-        EndColor_G = 0.5f;
-        EndColor_B = 1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Start_Color = new Color(StartColor_R, StartColor_G, StartColor_B);
-        End_Color = new Color(EndColor_R, EndColor_G, EndColor_B);
 
-        TileList[Start_Point].GetComponent<MeshRenderer>().materials[0].color = Start_Color;
-        TileList[End_Point].GetComponent<MeshRenderer>().materials[0].color = End_Color;
+    }
 
-        StartColor_R += Time.deltaTime;
-        StartColor_G += Time.deltaTime;
-        StartColor_B += Time.deltaTime;
-
-        EndColor_R += Time.deltaTime;
-        EndColor_G += Time.deltaTime;
-        EndColor_B += Time.deltaTime;
-
-        StartColor_R = InitializeColorValue(StartColor_R);
-        StartColor_G = InitializeColorValue(StartColor_G);
-        StartColor_B = InitializeColorValue(StartColor_B);
-
-        EndColor_R = InitializeColorValue(EndColor_R);
-        EndColor_G = InitializeColorValue(EndColor_G);
-        EndColor_B = InitializeColorValue(EndColor_B);
+    private void FixedUpdate()
+    {
+        UpdateFreeTile();
     }
 
     public void SaveInfo()
@@ -115,13 +93,14 @@ public class TileManager : MonoBehaviour
 
         Map.SettingMapInfo(0, MapScale_x, MapScale_y);
         Map.ClearList();
+        Map.ClearFreeTileList();
         for (int i = 0; i < MapScale_x * MapScale_y; i++)
         {
-            if (TileList[i].GetComponent<MeshRenderer>().materials[0].color == Color.red)
+            if (TileList[i].GetComponent<MeshRenderer>().materials[0].color == TileColor.tileColorRed)
                 Map.SettingTileInfo(TileColor.red);
-            else if (TileList[i].GetComponent<MeshRenderer>().materials[0].color == Color.green)
+            else if (TileList[i].GetComponent<MeshRenderer>().materials[0].color == TileColor.tileColorGreen)
                 Map.SettingTileInfo(TileColor.green);
-            else if (TileList[i].GetComponent<MeshRenderer>().materials[0].color == Color.blue)
+            else if (TileList[i].GetComponent<MeshRenderer>().materials[0].color == TileColor.tileColorBlue)
                 Map.SettingTileInfo(TileColor.blue);
             else if (TileList[i].GetComponent<MeshRenderer>().materials[0].color == Color.black)
                 Map.SettingTileInfo(TileColor.black);
@@ -130,6 +109,11 @@ public class TileManager : MonoBehaviour
         }
 
         Map.SettingSE(Start_Point, End_Point);
+
+        for(int i = 0; i < FreeTilePoint.Count; i++)
+        {
+            Map.SettingFreeTile(FreeTilePoint[i]);
+        }
 
         string str = JsonUtility.ToJson(Map);
 
@@ -156,10 +140,47 @@ public class TileManager : MonoBehaviour
         return MapScale_y;
     }
 
-    float InitializeColorValue(float value)
+    public bool CheckFreeTile(int tilePosition)
     {
-        if (value < 1.0f) return value;
+        for(int i = 0; i < FreeTilePoint.Count; i++)
+        {
+            if (tilePosition == FreeTilePoint[i])
+                return true;
+        }
 
-        return value - 1.0f;
+        return false;
+    }
+
+    public void ResetFreeTile()
+    {
+        FreeTilePoint.Clear();
+
+        for(int i = 0; i < TileList.Count; i++)
+        {
+            if (TileList[i].GetComponent<TileStatus>().isTileFree)
+                FreeTilePoint.Add(i);
+        }
+    }
+    public void UpdateFreeTile()
+    {
+        for(int i = 0; i < TileList.Count; i++)
+        {
+            for(int j = 0; j < FreeTilePoint.Count; j++)
+            {
+                if(i == FreeTilePoint[j])
+                {
+                    TileList[i].GetComponent<TileStatus>().isTileFree = true;
+                }
+            }
+        }
+    }
+
+    public void ResetEndTile()
+    {
+        for(int i = 0; i < TileList.Count; i++)
+        {
+            TileList[i].GetComponent<TileStatus>().isTileGoal = false;
+        }
+        TileList[End_Point].GetComponent<TileStatus>().isTileGoal = true;
     }
 }

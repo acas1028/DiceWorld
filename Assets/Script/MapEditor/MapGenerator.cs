@@ -16,13 +16,13 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         fileName = tileManager.MapName;
-        LoadMap();
     }
 
     // Update is called once per frame
     void Update()
     {
         fileName = tileManager.MapName;
+
     }
 
     public void LoadMap()
@@ -38,6 +38,12 @@ public class MapGenerator : MonoBehaviour
 
         tileManager.Start_Point = colorTileMap.Start_Point;
         tileManager.End_Point = colorTileMap.End_Point;
+
+        for(int i = 0; i < colorTileMap.Free_TilePoint.Count; i++)
+        {
+            tileManager.FreeTilePoint.Add(colorTileMap.Free_TilePoint[i]);
+        }
+        
         GenerateMap();
     }
 
@@ -68,6 +74,23 @@ public class MapGenerator : MonoBehaviour
                 // tileManager.SetMapScale((int)tileManager.GetMapScale_X(), (int)tileManager.GetMapScale_Y());
             }
         }
+
+        GameObject doubledice = GameObject.FindWithTag("DiceChanger");
+
+        if (doubledice == null)
+        {
+            tileManager.TileList[tileManager.End_Point].GetComponent<TileStatus>().SettingFlag();
+            tileManager.TileList[tileManager.End_Point].GetComponent<TileStatus>().isTileGoal = true;
+        }
+
+        for(int i = 0; i < tileManager.TileList.Count; i++)
+        {
+            if(tileManager.CheckFreeTile(i))
+                tileManager.TileList[i].GetComponent<TileStatus>().isTileFree = true;
+        }
+        Debug.Log("타일바꿔보리기");
+        tileManager.TileList[0].GetComponent<TileStatus>().isTileFree = true;
+        Debug.Log(tileManager.TileList[0].GetComponent<TileStatus>().isTileFree);
     }
     
     public void ClearMap()
@@ -80,5 +103,6 @@ public class MapGenerator : MonoBehaviour
         tileManager.End_Point = 0;
     }
 
+    
     
 }

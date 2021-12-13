@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Dice
   - OtherDice
+  - Flag
+  - DiceChanger
   layers:
   - Default
   - TransparentFX

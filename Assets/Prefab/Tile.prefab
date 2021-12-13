@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4160186213366194185}
   - component: {fileID: 3751964573598481335}
   - component: {fileID: -5354371904929640317}
+  - component: {fileID: -2739137939706334906}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -95,9 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e732ea01ab2d2894c959acf6fc897753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RedTile: 0
-  GreenTile: 0
-  BlueTile: 0
 --- !u!114 &-5354371904929640317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +109,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileNumber: 0
+--- !u!114 &-2739137939706334906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090412114817904725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236990d19709a7143b47d4bf4a5a465a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Flag: {fileID: 1533428177928048, guid: 75836cac8af52414c85343289a17535e, type: 3}
+  isTileFree: 0
+  isTileGoal: 0
