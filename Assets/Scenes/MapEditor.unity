@@ -404,7 +404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 6348956053861712389, guid: 17bf4ef95ddbcb44598b316f72f5d190, type: 3}
-  tileManager: {fileID: 1407919072}
+  tileManagerObject: {fileID: 1407919071}
+  tileManager: {fileID: 0}
   fileName: Stage_Test1
 --- !u!1 &378991787
 GameObject:

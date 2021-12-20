@@ -6,6 +6,7 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     public Transform tilePrefab;
+    public GameObject tileManagerObject;
     public TileManager tileManager;
     public string fileName;
     public ColorTileMap colorTileMap;
@@ -15,6 +16,7 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tileManager = tileManagerObject.GetComponent<TileManager>();
         fileName = tileManager.MapName;
     }
 
@@ -27,6 +29,8 @@ public class MapGenerator : MonoBehaviour
 
     public void LoadMap()
     {
+        tileManager = tileManagerObject.GetComponent<TileManager>();
+
         fileName = tileManager.MapName;
 
         colorTileMap = new ColorTileMap();
@@ -49,6 +53,8 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
+        tileManager = tileManagerObject.GetComponent<TileManager>();
+
         string holderName = "Generated Map";
         if (transform.Find(holderName))
         {
@@ -60,20 +66,27 @@ public class MapGenerator : MonoBehaviour
 
         tileManager.TileList.Clear();
 
+        Debug.Log(tileManager.TileList.Count);
+
+
         for (int x = 0; x < tileManager.GetMapScale_X(); x++)
         {
+            Debug.Log(tileManager.GetMapScale_X());
             for (int y = 0; y < tileManager.GetMapScale_Y(); y++)
             {
+                Debug.Log(tileManager.GetMapScale_Y());
                 Vector3 tilePosition = new Vector3(-tileManager.GetMapScale_X() / 2 + 0.5f + x, 0, -tileManager.GetMapScale_Y() / 2 + 0.5f + y);
                 Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
                 newTile.localScale = Vector3.one * (1 - 0.05f);
                 newTile.parent = mapHolder;
                 newTile.GetComponent<TileNumberSetting>().SettingTileNumber(x * tileManager.GetMapScale_X() + y);
-                newTile.GetComponent<TileColorChange>().ColorChange(colorTileMap.Tile_type[x * tileManager.GetMapScale_X() + y]);
+                // newTile.GetComponent<TileColorChange>().ColorChange(colorTileMap.Tile_type[x * tileManager.GetMapScale_X() + y]); //문제발생!
                 tileManager.TileList.Add(newTile.gameObject);
                 // tileManager.SetMapScale((int)tileManager.GetMapScale_X(), (int)tileManager.GetMapScale_Y());
             }
         }
+
+        Debug.Log(tileManager.TileList.Count);
 
         GameObject doubledice = GameObject.FindWithTag("DiceChanger");
 
