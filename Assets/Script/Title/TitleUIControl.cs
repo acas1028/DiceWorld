@@ -29,12 +29,15 @@ public class TitleUIControl : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        SceneManager.LoadScene("Stage_Sample");
+        SceneManager.LoadScene("Stage_Select");
     }
 
     public void HelpButton()
     {
         SoundPlayer.Instance.ChangeAndPlay(2);
+
+        PlayerPrefs.DeleteAll();
+
         HelpUI.SetActive(true);
     }
 

@@ -662,7 +662,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 344327086}
         m_TargetAssemblyTypeName: MapGenerator, Assembly-CSharp
-        m_MethodName: LoadMap
+        m_MethodName: LoadMap_Editor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

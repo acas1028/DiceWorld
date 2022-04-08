@@ -12,6 +12,7 @@ public class ColorTileMap
     public int Start_Point;
     public int End_Point;
     public List<int> Free_TilePoint;
+    public int Rank_Moving;
 
     public ColorTileMap()
     {
@@ -22,6 +23,7 @@ public class ColorTileMap
         Start_Point = 0;
         End_Point = 0;
         Free_TilePoint = new List<int>();
+        Rank_Moving = 0;
     }
     public void SettingMapInfo(int stageType,int mapScale_X,int mapScale_Y)
     {

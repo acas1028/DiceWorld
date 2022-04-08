@@ -40,8 +40,9 @@ public class CreateNewMap : MonoBehaviour
         tileManager.Start_Point = 0;
         tileManager.End_Point = 0;
 
-        mapGenerator.GenerateMap();
+        mapGenerator.GenerateNewMap();
         tileManager.SaveInfo();
+
 
         cursor.ResetSelectedNumber();
     }

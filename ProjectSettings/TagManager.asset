@@ -8,6 +8,9 @@ TagManager:
   - OtherDice
   - Flag
   - DiceChanger
+  - DataManager
+  - StageButton
+  - StackManager
   layers:
   - Default
   - TransparentFX

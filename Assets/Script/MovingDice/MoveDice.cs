@@ -87,6 +87,9 @@ public class MoveDice : MonoBehaviour
             GameObject effect = GameObject.Instantiate(SuccessEffect);
             effect.transform.position = new Vector3(transform.position.x, transform.position.y - 0.45f, transform.position.z);
             Destroy(effect, 1.0f);
+
+            GameObject stackManager = GameObject.FindGameObjectWithTag("StackManager");
+            if (stackManager != null) stackManager.GetComponent<StackManager>().IncreaseMoveCount(); 
         }
         else
         {
@@ -94,7 +97,10 @@ public class MoveDice : MonoBehaviour
             effect.transform.position = transform.position;
             Destroy(effect, 1.0f);
             diceGenerator.CResetDice();
-          
+
+            GameObject stackManager = GameObject.FindGameObjectWithTag("StackManager");
+            if (stackManager != null) stackManager.GetComponent<StackManager>().IncreaseDeathCount();
+
         }
         
         isMoving = false;
