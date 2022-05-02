@@ -64,11 +64,17 @@ public class StageClearUIControl : MonoBehaviour
 
         stageRank = deathRank + moveRank;
 
-        if(stageRank == 6)
+        string prefsString_StageRank = "Rank_Stage" + (dataManager.GetComponent<DataManager>().MapNumber).ToString();
+
+        if (stageRank == 6)
         {
             for(int i = 0; i < 3; i++)
             {
                 StageRankUI[i].GetComponent<Image>().sprite = RankSprite;
+                if (PlayerPrefs.HasKey(prefsString_StageRank)) PlayerPrefs.SetInt(prefsString_StageRank, 3);
+
+                Debug.Log(prefsString_StageRank);
+                Debug.Log(PlayerPrefs.GetInt(prefsString_StageRank));
             }
         }
 
@@ -77,6 +83,7 @@ public class StageClearUIControl : MonoBehaviour
             for (int i = 0; i < 2; i++)
             {
                 StageRankUI[i].GetComponent<Image>().sprite = RankSprite;
+                if (PlayerPrefs.HasKey(prefsString_StageRank)) PlayerPrefs.SetInt(prefsString_StageRank, 2);
             }
         }
 
@@ -85,11 +92,12 @@ public class StageClearUIControl : MonoBehaviour
             for (int i = 0; i < 1; i++)
             {
                 StageRankUI[i].GetComponent<Image>().sprite = RankSprite;
+                if (PlayerPrefs.HasKey(prefsString_StageRank)) PlayerPrefs.SetInt(prefsString_StageRank, 1);
             }
         }
 
         if (PlayerPrefs.HasKey("UnlockNumber")) PlayerPrefs.SetInt("UnlockNumber", dataManager.GetComponent<DataManager>().MapNumber + 1);
-
+       
         Destroy(dataManager);
     }
 

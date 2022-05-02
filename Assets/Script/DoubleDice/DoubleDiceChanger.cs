@@ -20,24 +20,29 @@ public class DoubleDiceChanger : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject DiceStart = DiceGenerator.GetComponent<DoubleDiceGenerator>().Dice_Start;
-            GameObject DiceEnd = DiceGenerator.GetComponent<DoubleDiceGenerator>().Dice_End;
-            if (DiceStart.GetComponent<MoveDoubleDice>().isActivated)
-            {
-                DiceStart.GetComponent<MoveDoubleDice>().isActivated = false;
-                DiceEnd.GetComponent<MoveDoubleDice>().isActivated = true;
+            ChangeCamera();
+        }
+    }
 
-                MainCamera.SetActive(false);
-                SubCamera.SetActive(true);
-            }
-            else if (DiceEnd.GetComponent<MoveDoubleDice>().isActivated)
-            {
-                DiceEnd.GetComponent<MoveDoubleDice>().isActivated = false;
-                DiceStart.GetComponent<MoveDoubleDice>().isActivated = true;
+    public void ChangeCamera()
+    {
+        GameObject DiceStart = DiceGenerator.GetComponent<DoubleDiceGenerator>().Dice_Start;
+        GameObject DiceEnd = DiceGenerator.GetComponent<DoubleDiceGenerator>().Dice_End;
+        if (DiceStart.GetComponent<MoveDoubleDice>().isActivated)
+        {
+            DiceStart.GetComponent<MoveDoubleDice>().isActivated = false;
+            DiceEnd.GetComponent<MoveDoubleDice>().isActivated = true;
 
-                SubCamera.SetActive(false);
-                MainCamera.SetActive(true);
-            }
+            MainCamera.SetActive(false);
+            SubCamera.SetActive(true);
+        }
+        else if (DiceEnd.GetComponent<MoveDoubleDice>().isActivated)
+        {
+            DiceEnd.GetComponent<MoveDoubleDice>().isActivated = false;
+            DiceStart.GetComponent<MoveDoubleDice>().isActivated = true;
+
+            SubCamera.SetActive(false);
+            MainCamera.SetActive(true);
         }
     }
 }

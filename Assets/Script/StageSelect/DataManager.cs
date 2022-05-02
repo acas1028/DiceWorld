@@ -7,6 +7,7 @@ public class DataManager : MonoBehaviour
 {
     public string MapName;
     public int MapNumber;
+    public bool isDoubleDiceStage;
 
     public int Rank_Moving;
     // Start is called before the first frame update
@@ -29,12 +30,20 @@ public class DataManager : MonoBehaviour
         StartCoroutine(CStartButton());
     }
 
+    public void SettingIsDoubleDiceStage(bool isDouble)
+    {
+        isDoubleDiceStage = isDouble;
+    }
+
     IEnumerator CStartButton()
     {
         SoundPlayer.Instance.ChangeAndPlay(2);
 
         yield return new WaitForSeconds(1.0f);
 
-        SceneManager.LoadScene("Stage_Sample");
+        if (isDoubleDiceStage)
+            SceneManager.LoadScene("Stage_DoubleDice");
+        else
+            SceneManager.LoadScene("Stage_Sample");
     }
 }

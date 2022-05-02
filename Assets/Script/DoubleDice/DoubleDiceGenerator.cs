@@ -17,6 +17,8 @@ public class DoubleDiceGenerator : MonoBehaviour
     public DiceQuadInfo Diceinfo_Start;
     public DiceQuadInfo Diceinfo_End;
 
+    public GameObject DiceChanger;
+
     public string DiceName;
     // Start is called before the first frame update
     void Start()
@@ -76,6 +78,8 @@ public class DoubleDiceGenerator : MonoBehaviour
 
         Dice_Start.GetComponent<MoveDoubleDice>().isActivated = true;
         Dice_End.GetComponent<MoveDoubleDice>().isActivated = false;
+
+        DiceChanger.GetComponent<DoubleDiceChanger>().ChangeCamera();
     }
 
     public void CResetDice()

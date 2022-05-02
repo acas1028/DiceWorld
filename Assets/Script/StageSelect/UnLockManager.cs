@@ -17,6 +17,7 @@ public class UnLockManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("UnlockNumber")) PlayerPrefs.SetInt("UnlockNumber", 1);
         else unlocknumber = PlayerPrefs.GetInt("UnlockNumber");
 
+
         for (int i = 0; i < 32; i++)
         {
             rank_Stage[i] = 0;
@@ -32,6 +33,7 @@ public class UnLockManager : MonoBehaviour
     {
         if (isunlocked == true) return;
         Unlock();
+
     }
 
     public void Unlock()
@@ -41,7 +43,21 @@ public class UnLockManager : MonoBehaviour
         {
             if (button.GetComponent<ButtonActivate>().buttonNumber <= unlocknumber)
                 button.GetComponent<ButtonActivate>().isActivated = true;
+
+            string prefsString_StageRank = "Rank_Stage" + button.GetComponent<ButtonActivate>().buttonNumber.ToString();
+
+            if(PlayerPrefs.HasKey(prefsString_StageRank))
+            {
+                Debug.Log(prefsString_StageRank);
+                Debug.Log(PlayerPrefs.GetInt(prefsString_StageRank));
+                if(PlayerPrefs.GetInt(prefsString_StageRank) == 3)
+                {
+                    button.GetComponent<ButtonActivate>().isPerfect = true;
+                }
+            }
         }
+
+
         isunlocked = true;
     }
 }
